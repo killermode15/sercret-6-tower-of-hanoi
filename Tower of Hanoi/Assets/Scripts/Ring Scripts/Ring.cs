@@ -6,17 +6,22 @@ using UnityEngine;
 public class Ring : MonoBehaviour
 {
     public int RingOrder => ringOrder;
-    [SerializeField] private int ringOrder = 0;
-    [SerializeField] private TextMeshPro ringOrderText;
 
-    public void SetRing(int order)
+    [SerializeField] private int ringOrder = 0;
+    [SerializeField] private TextMeshPro ringOrderText = null;
+    [SerializeField] private SpriteRenderer spriteRenderer = null;
+
+    private void Start()
+    {
+    }
+
+    public void SetRing(int order, Color color, Vector3 scale)
     {
         name = "Ring [" + order +"]";
         ringOrder = order;
         ringOrderText.text = order.ToString();
-        //ringOrderText.transform.SetParent(null);
-        ringOrderText.transform.localScale = new Vector3(1, 1f, 1);
-        ringOrderText.transform.SetParent(transform, true);
-        ringOrderText.transform.position = transform.position;
+        spriteRenderer.color = color;
+        spriteRenderer.transform.localScale += scale;
+
     }
 }

@@ -8,26 +8,16 @@ public class RodHandler : MonoBehaviour
 {
     public int RingCount => ringsHeld.Count;
     public Vector3 TopPosition => topPoint.position;
+    public Vector3 StartPosition => startPoint.position;
 
     [Header("Animation Properties")]
     [Space(10)]
-    [SerializeField] private AnimationCurve easeCurve = null;
+    [SerializeField] private GameSettings gameSettings;
     [SerializeField] private Transform startPoint = null;
     [SerializeField] private Transform topPoint = null;
 
     private Stack<Ring> ringsHeld = new Stack<Ring>();
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-    }
-
+    
     public bool CanAddRingToRod(Ring ring)
     {
         if (ringsHeld.Count <= 0) return true;
@@ -71,6 +61,14 @@ public class RodHandler : MonoBehaviour
         return ringsHeld.Count <= 0 ? null : ringsHeld.Pop();
     }
 
+    public void ClearRod()
+    {
+        for (int i = 0; i < ringsHeld.Count; i++)
+        {
+            Destroy(ringsHeld.Pop());
+        }
+    }
+
     private IEnumerator AnimateRing_CR(Ring ring, Vector3 targetPos, float duration, float delay = 0)
     {
         ring.gameObject.SetActive(false);
@@ -88,7 +86,7 @@ public class RodHandler : MonoBehaviour
             currTime += Time.deltaTime;
             perc = currTime / duration;
 
-            float easedPerc = easeCurve.Evaluate(perc);
+            float easedPerc = gameSettings.RingEaseCurve.Evaluate(perc);
             ring.transform.position = Vector3.Lerp(startPos, targetPos, easedPerc);
 
             yield return new WaitForEndOfFrame();

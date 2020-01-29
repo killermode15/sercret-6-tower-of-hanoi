@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfRings: 8
   ringLimit: {x: 4, y: 8}
-  colorPalette: {fileID: 11400000, guid: 04a3193c3fd02d34fb6ae486ff2877a1, type: 2}
+  colorPalette: {fileID: 11400000, guid: dbbf26c26593800469e49c36dbf9da46, type: 2}
   easeCurve:
     serializedVersion: 2
     m_Curve:

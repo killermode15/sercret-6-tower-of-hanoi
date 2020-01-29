@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         if (CheckWinCondition())
         {
             Debug.Log("You have won");
-
+            onGameEnd.Invoke();
             // Do win condition here
             hasGameStarted = false;
             onGameEnd.Invoke();

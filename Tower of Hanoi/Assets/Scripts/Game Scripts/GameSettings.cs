@@ -11,7 +11,7 @@ public class GameSettings : ScriptableObject
 
     [Header("Rings Settings")]
     [SerializeField] private int numberOfRings = 4;
-
+    [SerializeField] private bool showRingNumber = true;
     [SerializeField] private Vector2Int ringLimit;
 
     [Header("Aesthetic Settings")]
@@ -21,8 +21,8 @@ public class GameSettings : ScriptableObject
 
     private void OnValidate()
     {
-        if (ringLimit.x < 4)
-            ringLimit.x = 4;
+        if (ringLimit.x < 3)
+            ringLimit.x = 3;
         if (ringLimit.y > 8)
             ringLimit.y = 8;
 

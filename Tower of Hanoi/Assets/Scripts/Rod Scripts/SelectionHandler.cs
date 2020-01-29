@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SelectionHandler : MonoBehaviour
 {
+    [Header("Selection Events")]
+    [SerializeField] private UnityEvent onRingMove;
+
     private RodHandler selectedRod = null;
     private Ring ring = null;
     private Vector3 ringTargetPosition = Vector3.zero;
@@ -70,40 +74,27 @@ public class SelectionHandler : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f);
 
-
-        if (!hit)
+        if(hit)
         {
-            if (ring)
+            if(!hit.collider.CompareTag("Rod") && ring != null)
             {
                 ring = null;
                 selectedRod.AddRingToRod(selectedRod.GetTopRing());
             }
-            return;
-        }
 
-        if (!hit.collider.CompareTag("Rod"))
-        {
-            if (ring)
+            RodHandler detectedRod = hit.collider.GetComponent<RodHandler>();
+
+            if (!detectedRod.CanAddRingToRod(selectedRod.CheckTopRing()))
             {
-                ring = null;
-                selectedRod.AddRingToRod(selectedRod.GetTopRing());
+                if (ring)
+                {
+                    ring = null;
+                    selectedRod.AddRingToRod(selectedRod.GetTopRing());
+                }
+                return;
             }
-            return;
+            detectedRod.AddRingToRod(selectedRod.GetTopRing());
+            ring = null;
         }
-
-        RodHandler detectedRod = hit.collider.GetComponent<RodHandler>();
-
-        if (!detectedRod.CanAddRingToRod(selectedRod.CheckTopRing()))
-        {
-            if (ring)
-            {
-                ring = null;
-                selectedRod.AddRingToRod(selectedRod.GetTopRing());
-            }
-            return;
-        }
-        detectedRod.AddRingToRod(selectedRod.GetTopRing());
-        ring = null;
-        Debug.Log("detected a rod");
     }
 }

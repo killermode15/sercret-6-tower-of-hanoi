@@ -13,26 +13,26 @@ public class RingManager : MonoBehaviour
     [SerializeField] private GameObject ringPrefab;
     [SerializeField] private RodHandler startingRod;
 
+    [Header("References")]
+    [Space(10)]
+    [SerializeField] private List<RodHandler> rods;
 
     private List<Ring> spawnedRings = new List<Ring>();
     
     public void SetupRings()
     {
-        Transform ringStartPoint = startingRod.transform.GetChild(0);
-        Vector3 ringPosition = ringStartPoint.position;
+        Vector3 ringStartPos = startingRod.StartPosition;
         List<Vector3> ringPositions = new List<Vector3>();
 
         for (int i = gameSettings.NumberOfRings - 1; i >= 0; i--)
         {
-            GameObject ring = Instantiate(ringPrefab, ringStartPoint.position, Quaternion.identity);
-
-            ring.GetComponent<SpriteRenderer>().color = gameSettings.ColorPalette.GetColor(i);
-
+            GameObject ring = Instantiate(ringPrefab, ringStartPos, Quaternion.identity);
             Ring ringScript = ring.GetComponent<Ring>();
-            ringScript.SetRing(i + 1);
-            ring.transform.localScale += new Vector3(0.5f * (i), 0, 0);
 
+            Color ringColor = gameSettings.ColorPalette.GetColor(i);
+            Vector3 scale = new Vector3(0.5f * (i), 0, 0);
 
+            ringScript.SetRing(i + 1, ringColor, scale);
             spawnedRings.Add(ringScript);
         }
 
@@ -40,5 +40,10 @@ public class RingManager : MonoBehaviour
         {
             startingRod.AddRingToRod(ring, true);
         }
+    }
+
+    public void CleanUpRings()
+    {
+        // Delete all rings and clean it up
     }
 }
