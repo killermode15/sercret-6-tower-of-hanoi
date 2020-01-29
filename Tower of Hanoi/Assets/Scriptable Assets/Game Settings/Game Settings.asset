@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf85aed4e1a42e54695d207eefc2ac12, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  numberOfRings: 8
-  ringLimit: {x: 4, y: 8}
+  numberOfRings: 3
+  showRingNumber: 1
+  ringLimit: {x: 3, y: 8}
   colorPalette: {fileID: 11400000, guid: dbbf26c26593800469e49c36dbf9da46, type: 2}
   easeCurve:
     serializedVersion: 2

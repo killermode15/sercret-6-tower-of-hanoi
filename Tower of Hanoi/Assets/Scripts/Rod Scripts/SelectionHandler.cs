@@ -74,25 +74,35 @@ public class SelectionHandler : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f);
 
-        if(hit)
+        // If an object is detected
+        if (hit)
         {
-            if(!hit.collider.CompareTag("Rod") && ring != null)
+            // If the object is not a rod and there is a ring selected
+            if (!hit.collider.CompareTag("Rod") && ring != null)
+            {
+                // Return the ring to the originally selected rod
+                ring = null;
+                selectedRod.AddRingToRod(selectedRod.GetTopRing());
+                return;
+            }
+            if (!ring)
+            {
+                return;
+            }
+
+            // If the there is a detected red, check if the ring can be added
+            RodHandler detectedRod = hit.collider.GetComponent<RodHandler>();
+
+            // If the ring can't be added to the detected rod, return the ring to the originally selected rod
+            if (!detectedRod.CanAddRingToRod(ring) || selectedRod == detectedRod)
             {
                 ring = null;
                 selectedRod.AddRingToRod(selectedRod.GetTopRing());
-            }
-
-            RodHandler detectedRod = hit.collider.GetComponent<RodHandler>();
-
-            if (!detectedRod.CanAddRingToRod(selectedRod.CheckTopRing()))
-            {
-                if (ring)
-                {
-                    ring = null;
-                    selectedRod.AddRingToRod(selectedRod.GetTopRing());
-                }
                 return;
             }
+
+            // Add the ring to the detected rod
+            onRingMove.Invoke();
             detectedRod.AddRingToRod(selectedRod.GetTopRing());
             ring = null;
         }

@@ -17,7 +17,14 @@ public class RodHandler : MonoBehaviour
     [SerializeField] private Transform topPoint = null;
 
     private Stack<Ring> ringsHeld = new Stack<Ring>();
-    
+
+    public List<Ring> ringTest = new List<Ring>();
+
+    private void Update()
+    {
+        ringTest = ringsHeld.ToList();
+    }
+
     public bool CanAddRingToRod(Ring ring)
     {
         if (ringsHeld.Count <= 0) return true;
@@ -63,10 +70,11 @@ public class RodHandler : MonoBehaviour
 
     public void ClearRod()
     {
-        for (int i = 0; i < ringsHeld.Count; i++)
-        {
-            Destroy(ringsHeld.Pop());
-        }
+        ringsHeld.Clear();
+        //for (int i = ringsHeld.Count - 1; i > 0 ; i--)
+        //{
+        //    Destroy(ringsHeld.Pop().gameObject);
+        //}
     }
 
     private IEnumerator AnimateRing_CR(Ring ring, Vector3 targetPos, float duration, float delay = 0)

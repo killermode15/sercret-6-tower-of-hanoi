@@ -45,5 +45,15 @@ public class RingManager : MonoBehaviour
     public void CleanUpRings()
     {
         // Delete all rings and clean it up
+        foreach(RodHandler rod in rods)
+        {
+            rod.ClearRod();
+        }
+        for (int i = spawnedRings.Count - 1; i  >= 0 ; i--)
+        {
+            Ring ring = spawnedRings[i];
+            spawnedRings.Remove(ring);
+            Destroy(ring.gameObject);
+        }
     }
 }
