@@ -1,0 +1,2 @@
+E:\sean-repository-source-tree\secret-6-tower-of-hanoi\Tower of Hanoi\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+E:\sean-repository-source-tree\secret-6-tower-of-hanoi\Tower of Hanoi\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

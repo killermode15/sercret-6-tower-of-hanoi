@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class RingColourPalette : ScriptableObject
+public class RingColorPalette : ScriptableObject
 {
     [SerializeField] private List<Color> ringColorPalette;
 

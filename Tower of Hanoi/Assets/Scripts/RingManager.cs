@@ -1,51 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class RingManager : MonoBehaviour
 {
-    public int RingCount => ringCount;
 
     [Header("Ring Properties")]
-    [SerializeField] private RingColourPalette colourPalette;
-    [SerializeField] private int ringCount = 4;
+    //[SerializeField] private RingColorPalette colorPalette;
+    //[SerializeField] private int ringCount = 4;
+    [SerializeField] private GameSettings gameSettings;
     [SerializeField] private GameObject ringPrefab;
     [SerializeField] private RodHandler startingRod;
 
-    private List<Ring> rings = new List<Ring>();
 
-    private void OnValidate()
+    private List<Ring> spawnedRings = new List<Ring>();
+    
+    public void SetupRings()
     {
-        if (ringCount < 3)
-            ringCount = 3;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
         Transform ringStartPoint = startingRod.transform.GetChild(0);
+        Vector3 ringPosition = ringStartPoint.position;
+        List<Vector3> ringPositions = new List<Vector3>();
 
-        for (int i = ringCount - 1; i >= 0; i--)
+        for (int i = gameSettings.NumberOfRings - 1; i >= 0; i--)
         {
-            GameObject ring = Instantiate(ringPrefab, ringStartPoint.transform.position, Quaternion.identity);
+            GameObject ring = Instantiate(ringPrefab, ringStartPoint.position, Quaternion.identity);
 
-            ring.GetComponent<SpriteRenderer>().color = colourPalette.GetColor(i);
+            ring.GetComponent<SpriteRenderer>().color = gameSettings.ColorPalette.GetColor(i);
 
             Ring ringScript = ring.GetComponent<Ring>();
             ringScript.SetRing(i + 1);
-            ring.name = "Ring [" + (i + 1) + "]";
-            ring.transform.localScale += new Vector3(0.15f * (i), 0, 0);
-            ring.transform.position += new Vector3(0, 0.5f * (ringCount - i -1), 0);
-            
-            rings.Add(ringScript);
+            ring.transform.localScale += new Vector3(0.5f * (i), 0, 0);
+
+
+            spawnedRings.Add(ringScript);
         }
 
-        for (int i = 0; i < rings.Count; i++)
+        foreach (Ring ring in spawnedRings)
         {
-            startingRod.AddRingToRod(rings[i]);
+            startingRod.AddRingToRod(ring, true);
         }
-
-
     }
 }
