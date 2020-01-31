@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GameSettings : ScriptableObject
 {
+    public bool ShowRingNumber => showRingNumber;
     public int NumberOfRings => numberOfRings;
     public RingColorPalette ColorPalette => colorPalette;
     public AnimationCurve RingEaseCurve => easeCurve;
@@ -37,5 +38,26 @@ public class GameSettings : ScriptableObject
         }
 
         colorPalette = newPalette;
+    }
+
+    public void AddRing()
+    {
+        numberOfRings++;
+        if (numberOfRings > ringLimit.y)
+            numberOfRings = ringLimit.y;
+    }
+
+    public void ReduceRing()
+    {
+        numberOfRings--;
+        if (numberOfRings < ringLimit.x)
+            numberOfRings = ringLimit.x;
+    }
+
+
+
+    public void ToggleRingNumber(bool val)
+    {
+        showRingNumber = val;
     }
 }

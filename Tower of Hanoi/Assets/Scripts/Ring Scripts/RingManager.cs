@@ -7,15 +7,13 @@ public class RingManager : MonoBehaviour
 {
 
     [Header("Ring Properties")]
-    //[SerializeField] private RingColorPalette colorPalette;
-    //[SerializeField] private int ringCount = 4;
-    [SerializeField] private GameSettings gameSettings;
-    [SerializeField] private GameObject ringPrefab;
-    [SerializeField] private RodHandler startingRod;
+    [SerializeField] private GameSettings gameSettings = null;
+    [SerializeField] private GameObject ringPrefab = null;
+    [SerializeField] private RodHandler startingRod = null;
 
     [Header("References")]
     [Space(10)]
-    [SerializeField] private List<RodHandler> rods;
+    [SerializeField] private List<RodHandler> rods = new List<RodHandler>();
 
     private List<Ring> spawnedRings = new List<Ring>();
     
@@ -32,7 +30,7 @@ public class RingManager : MonoBehaviour
             Color ringColor = gameSettings.ColorPalette.GetColor(i);
             Vector3 scale = new Vector3(0.5f * (i), 0, 0);
 
-            ringScript.SetRing(i + 1, ringColor, scale);
+            ringScript.SetRing(i + 1, ringColor, scale, gameSettings.ShowRingNumber);
             spawnedRings.Add(ringScript);
         }
 

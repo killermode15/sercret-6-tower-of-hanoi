@@ -15,13 +15,13 @@ public class Ring : MonoBehaviour
     {
     }
 
-    public void SetRing(int order, Color color, Vector3 scale)
+    public void SetRing(int order, Color color, Vector3 scale, bool showNumber)
     {
         name = "Ring [" + order +"]";
         ringOrder = order;
         ringOrderText.text = order.ToString();
         spriteRenderer.color = color;
         spriteRenderer.transform.localScale += scale;
-
+        ringOrderText.gameObject.SetActive(showNumber);
     }
 }

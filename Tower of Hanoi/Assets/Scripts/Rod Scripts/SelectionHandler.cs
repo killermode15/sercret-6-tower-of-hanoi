@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class SelectionHandler : MonoBehaviour
 {
     [Header("Selection Events")]
-    [SerializeField] private UnityEvent onRingMove;
+    [SerializeField] private UnityEvent onRingSelect = null;
+    [SerializeField] private UnityEvent onRingMove = null;
 
     private RodHandler selectedRod = null;
     private Ring ring = null;
@@ -47,6 +48,8 @@ public class SelectionHandler : MonoBehaviour
         selectedRod = hit.collider.GetComponent<RodHandler>();
         // Get a reference to the top ring of the rod
         ring = selectedRod.CheckTopRing();
+        // Call onRingSelect event
+        onRingSelect.Invoke();
     }
 
     // Is called when a rod with a ring is selected and the left mouse button is held

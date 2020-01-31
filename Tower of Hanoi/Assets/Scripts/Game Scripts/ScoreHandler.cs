@@ -26,7 +26,7 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField] private int moves = 0;
     [SerializeField] private float timer = 0;
 
-    [SerializeField] private UnityEvent onTimerUpdate;
+    [SerializeField] private UnityEvent onTimerUpdate = null;
 
     private bool isTimerCounting = false;
 

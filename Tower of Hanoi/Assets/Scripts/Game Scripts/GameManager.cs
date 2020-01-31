@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Events")]
     [Space(10)]
-    [SerializeField] private UnityEvent onGameStart;
-    [SerializeField] private UnityEvent onGameEnd;
+    [SerializeField] private UnityEvent onGameStart = null;
+    [SerializeField] private UnityEvent onGameEnd = null;
 
 
     // Start is called before the first frame update
@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
 
         hasGameStarted = true;
         onGameStart.Invoke();
+    }
 
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

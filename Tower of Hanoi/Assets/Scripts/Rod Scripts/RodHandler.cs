@@ -12,7 +12,7 @@ public class RodHandler : MonoBehaviour
 
     [Header("Animation Properties")]
     [Space(10)]
-    [SerializeField] private GameSettings gameSettings;
+    [SerializeField] private GameSettings gameSettings = null;
     [SerializeField] private Transform startPoint = null;
     [SerializeField] private Transform topPoint = null;
 

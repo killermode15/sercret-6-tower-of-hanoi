@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class ScoreUIHandler : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI movesText;
-    [SerializeField] private TextMeshProUGUI timerText;
-
-    [SerializeField] private ScoreHandler scoreHandler;
+    [SerializeField] private TextMeshProUGUI movesText = null;
+    [SerializeField] private TextMeshProUGUI timerText = null;
+                                                       
+    [SerializeField] private ScoreHandler scoreHandler = null;
     
     // Update is called once per frame
     public void UpdateUI()

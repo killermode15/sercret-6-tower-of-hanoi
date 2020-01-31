@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188b7a16b5d9fac4e8f1b69247491ad6, type: 3}
+  m_Name: Audio Manager
+  m_EditorClassIdentifier: 
+  AudioData:
+  - identifier: BGM
+    useSnapshot: 0
+    audioClip: {fileID: 8300000, guid: 51b527da2e7faf44e88389081dbb82ad, type: 3}
+    mixerSnapshot: {fileID: 0}
+    volume: 0.75
+  - identifier: Button Click
+    useSnapshot: 0
+    audioClip: {fileID: 8300000, guid: 55829fcd52dd1d04da247a9667de7411, type: 3}
+    mixerSnapshot: {fileID: 0}
+    volume: 0.35
+  - identifier: Button Hover
+    useSnapshot: 0
+    audioClip: {fileID: 8300000, guid: 7e4bf058c5fdcb44fb9e0bc9ee8630b5, type: 3}
+    mixerSnapshot: {fileID: 0}
+    volume: 0.35
+  - identifier: Win
+    useSnapshot: 0
+    audioClip: {fileID: 8300000, guid: 0eac21eac38971b42aefeaa02fa16523, type: 3}
+    mixerSnapshot: {fileID: 0}
+    volume: 0.75
+  - identifier: Ring Pickup
+    useSnapshot: 0
+    audioClip: {fileID: 8300000, guid: 877e882ece9deab4a817644293877b01, type: 3}
+    mixerSnapshot: {fileID: 0}
+    volume: 0.15
+  - identifier: Rod Select
+    useSnapshot: 0
+    audioClip: {fileID: 8300000, guid: 4afbed196e38d3a42b872808833206e7, type: 3}
+    mixerSnapshot: {fileID: 0}
+    volume: 0.15
