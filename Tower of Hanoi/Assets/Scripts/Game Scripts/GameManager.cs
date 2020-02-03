@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Events")]
     [Space(10)]
     [SerializeField] private UnityEvent onGameStart = null;
-    [SerializeField] private UnityEvent onGameEnd = null;
+    [SerializeField] private UnityEvent onGameWin = null;
 
 
     // Start is called before the first frame update
@@ -36,11 +36,9 @@ public class GameManager : MonoBehaviour
 
 
         if (CheckWinCondition())
-        { 
-            onGameEnd.Invoke();
-            // Do win condition here
-            hasGameStarted = false;
-            onGameEnd.Invoke();
+        {
+            onGameWin.Invoke();
+            EndGame();
         }
     }
 
@@ -56,6 +54,13 @@ public class GameManager : MonoBehaviour
         hasGameStarted = true;
         onGameStart.Invoke();
     }
+
+    public void EndGame()
+    {
+        // Do win condition here
+        hasGameStarted = false;
+    }
+
 
     public void ExitGame()
     {
